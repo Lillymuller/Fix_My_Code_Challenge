@@ -1,54 +1,76 @@
-class Square:
+#!/usr/bin/python3
+"""
+Class Square Module
+"""
+
+
+class Square():
     """
-    Represents a square with a width and height.
+    Attr:
+        width
+        height
+    Methods:
+        __init__(self, *args, **kwargs)
+        area(self)
+        perimeter(self)
+        __str__(self)
     """
 
-    def __init__(self, width=0, height=0):
-        """
-        Initializes a Square object.
+    width = 0
+    height = 0
 
-        Args:
-            width (int, optional): The width of the square. Defaults to 0.
-            height (int, optional): The height of the square. Defaults to 0.
-        """
-
-        self.width = width
-        self.height = height
+    def __init__(self, *args, **kwargs):
+        """initialize square instance with width and height"""
+        if kwargs:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
+            if 'width' in kwargs.keys() and self.height != kwargs['width']:
+                self.height = self.width
+            if 'height' in kwargs.keys() and self.width != kwargs['height']:
+                self.width = self.height
 
     def area(self):
-        """
-        Calculates the area of the square.
-
-        Returns:
-            int: The area of the square (width * width).
-        """
-
+        """ Return area of the square """
         return self.width * self.width
 
     def perimeter(self):
-        """
-        Calculates the perimeter of the square.
-
-        Returns:
-            int: The perimeter of the square (2 * width + 2 * height).
-        """
-
-        return 2 * self.width + 2 * self.height
+        """ Return perimeter of the square """
+        return (self.width * 4)
 
     def __str__(self):
-        """
-        Returns a string representation of the square in the format "width/height".
-
-        Returns:
-            str: The string representation of the square.
-        """
-
-        return f"{self.width}/{self.height}"
+        """ Return string representation """
+        return "{}/{}".format(self.width, self.width)
 
 
 if __name__ == "__main__":
-    square_object = Square(width=12, height=9)
-    print(square_object)  # Output: 12/9
-    print(square_object.area())  # Output: 144
-    print(square_object.perimeter())  # Output: 42
-
+    s = Square(width = 12, height = 9)
+    print(s)
+    print(s.width)
+    print(s.height)
+    print(s.area())
+    print(s.perimeter())
+    print(s.__str__())
+    print("--------------------------------")
+    q = Square(width=2)
+    print(q)
+    print(q.width)
+    print(q.height)
+    print(q.area())
+    print(q.perimeter())
+    print(q.__str__())
+    print("--------------------------------")
+    u = Square(height=3)
+    print(u)
+    print(u.width)
+    print(u.height)
+    print(u.area())
+    print(u.perimeter())
+    print(u.__str__())
+    print("--------------------------------")
+    a = Square()
+    print(a)
+    print(a.width)
+    print(a.height)
+    print(a.area())
+    print(a.perimeter())
+    print(a.__str__())
